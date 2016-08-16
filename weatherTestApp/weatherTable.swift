@@ -25,15 +25,14 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
     //var longitude: CLLocationDegrees!
     //var latitude: CLLocationDegrees!
     var currentWeather = [Weather]()
+    var currentLocationWeather = [locationWeather]()
+    
     var currentConditionArray = [String:String]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         daysArray = ["Tommorrow", "2.Days.Out", "3.Days.Out", "4.Days.Out", "5.Days.Out", "6.Days.Out", "7.Days.Out", "8.Days.Out"]
-        
-        
-
         
         //http://www.mapquestapi.com/geocoding/v1/reverse?key=20nebg0CcusFuel5NExAlbSALLkwuQmN&callback=renderReverse&location=40.053116,-76.313603
         
@@ -46,9 +45,11 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
         
         //self.tableView.parallaxHeader.view = NSBundle.mainBundle().loadNibNamed("customHeader", owner: self, options: nil).first as? UIView
         
+        
+        
         myCustomView = UINib(nibName: "customHeader", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! customHeaderView
         myCustomView.changeBackground(UIColor.flatBlueColor(), color2: UIColor.flatWhiteColor())
-        myCustomView.degreesLabel.text = "77˚"
+        
         self.tableView.parallaxHeader.view = myCustomView
         
         
@@ -75,9 +76,12 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
         
         }
     func stopUpdatingLocation() {
+        //
+        print(currentLocationWeather.count)
         
         locationManager.stopUpdatingLocation()
-        myCustomView.cityLabel.text = "City.\(self.currentLocationString)" 
+        myCustomView.cityLabel.text = "City.\(self.currentLocationString)"
+        
         
         
     }
@@ -111,7 +115,6 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
                     self.currentLocationString = cityName
                 }
                 //self.currentLocationString = "\(pm.locality)" as! String
-                print(self.currentLocationString)
                 
 
                 
@@ -143,6 +146,7 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! weatherCell
         
         
+        
         let weather = currentWeather[indexPath.row]
         
         cell.descriptionLabel.text = weather.text
@@ -165,15 +169,14 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
     
     func getData() {
         let city = self.currentLocationString as String
-        print(self.currentLocationString)
-        print(city)
+        //print(self.currentLocationString)
+        //print(city)
         let replacedCity = (city as NSString).stringByReplacingOccurrencesOfString(" ", withString: "%20")
         let replacedCityComma = (replacedCity as NSString).stringByReplacingOccurrencesOfString(",", withString: "%2C")
         
         
         
         let url = NSURL(string: "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22\(replacedCityComma)%22)&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=")
-        print(url)
         
         let request = NSMutableURLRequest(URL: url!)
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
@@ -196,7 +199,7 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
                 do {
                     result = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
                     
-                    print("parsing")
+                    
                 } catch {
                     
                     print("Could not parse the data as JSON")
@@ -204,13 +207,24 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
                 
                 }
                 
-                //print(result)
                 if let query = result["query"] as? [String: AnyObject]{
-                    //print(query)
                     if let results = query["results"] as? [String:AnyObject] {
                         if let channel = results["channel"] as? [String:AnyObject] {
                             if let item = channel["item"] as? [String:AnyObject] {
-                                if let forecast = item["forecast"] as? NSArray {
+                                if let forecast = item["forecast"] as? NSArray, condition = item["condition"] as? [String:AnyObject] {
+                                    for items in condition {
+                                        let myLocationWeather = locationWeather()
+                                        myLocationWeather.date = condition["date"] as! String
+                                        myLocationWeather.temp = condition["temp"] as! String
+                                        myLocationWeather.text = condition["text"] as! String
+                                    
+                                        print(myLocationWeather.date)
+                                        print(myLocationWeather.temp)
+                                        print(myLocationWeather.text)
+                                        self.currentLocationWeather.append(myLocationWeather)
+                                    }
+                                        
+                                    
                                     for days in forecast {
                                         //print(days)
                                         if let day = days as? [String:AnyObject] {
@@ -237,7 +251,15 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
                 self.currentWeather.removeAtIndex(0)
 
                 dispatch_async(dispatch_get_main_queue()) {
+                    
                     self.tableView.reloadData()
+                    
+                    print("dispatchCount: \(self.currentLocationWeather.count)")
+                    
+                    let myCurrentWeather = self.currentLocationWeather[0]
+                    self.myCustomView.degreesLabel.text = "\(myCurrentWeather.temp)˚"
+                    self.myCustomView.descriptionLabel.text = myCurrentWeather.text
+
                 }
 
                 
@@ -248,6 +270,7 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
         task.resume()
         
         
+       
     }
 
 }

@@ -16,6 +16,7 @@ class customHeaderView: UIView, MXParallaxHeaderProtocol {
     @IBOutlet weak var degreesLabel: UILabel!
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

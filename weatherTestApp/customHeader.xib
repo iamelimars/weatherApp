@@ -33,17 +33,30 @@
                     <color key="textColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cloudy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U4J-JR-RlY">
+                    <rect key="frame" x="163" y="358" width="274" height="43"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="43" id="Rjw-Fp-NS0"/>
+                        <constraint firstAttribute="width" constant="274" id="lEK-2g-eVM"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                    <color key="textColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.66902792453765869" green="0.73128575086593628" blue="0.94889926910400391" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="Wyg-tQ-SQI" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Ghf-rY-Ry7"/>
                 <constraint firstItem="yaO-P9-eoS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="34" id="T75-Pm-Tfg"/>
+                <constraint firstItem="U4J-JR-RlY" firstAttribute="top" secondItem="Wyg-tQ-SQI" secondAttribute="bottom" constant="8" id="ceJ-eY-XrM"/>
+                <constraint firstItem="U4J-JR-RlY" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="q3a-k9-CUw"/>
                 <constraint firstItem="yaO-P9-eoS" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="tML-ew-xnE"/>
                 <constraint firstItem="Wyg-tQ-SQI" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ub8-0U-98i"/>
             </constraints>
             <connections>
                 <outlet property="cityLabel" destination="yaO-P9-eoS" id="fGN-gR-MRL"/>
                 <outlet property="degreesLabel" destination="Wyg-tQ-SQI" id="jf3-L6-U9o"/>
+                <outlet property="descriptionLabel" destination="U4J-JR-RlY" id="zOS-lW-kHC"/>
             </connections>
         </view>
     </objects>
