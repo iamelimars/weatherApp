@@ -26,6 +26,7 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
     //var latitude: CLLocationDegrees!
     var currentWeather = [Weather]()
     var currentLocationWeather = [locationWeather]()
+    var testString = ""
     
     var currentConditionArray = [String:String]()
     
@@ -45,10 +46,13 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
         
         //self.tableView.parallaxHeader.view = NSBundle.mainBundle().loadNibNamed("customHeader", owner: self, options: nil).first as? UIView
         
-        
+        self.navigationController?.navigationBarHidden = true
         
         myCustomView = UINib(nibName: "customHeader", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! customHeaderView
         myCustomView.changeBackground(UIColor.flatBlueColor(), color2: UIColor.flatWhiteColor())
+        myCustomView.backButton.addTarget(self, action: #selector(weatherTable.dismissVC(_:)), forControlEvents: .TouchUpInside)
+        //let backButton = myCustomView.backButton as UIButton
+        //backButton.addTarget(self, action: Selector(dismissVC()), forControlEvents:.TouchUpInside)
         
         self.tableView.parallaxHeader.view = myCustomView
         
@@ -57,10 +61,31 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
         
         print(self.currentLocationString)
     }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let secondViewController = segue.destinationViewController as! MenuViewController
+        secondViewController.weatherViewController = self
+    }
+ 
     override func viewDidAppear(animated: Bool) {
+        
+        print(testString)
         
         getCurrentLocation()
 
+    }
+    override func viewDidDisappear(animated: Bool) {
+        
+        self.currentLocationWeather = []
+        
+    }
+    func dismissVC(sender:UIButton) {
+        
+        //self.dismissViewControllerAnimated(false, completion: nil)
+        
+        self.performSegueWithIdentifier("toWeatherTable", sender: self)
+        print("button Pressed")
+        
     }
     
     

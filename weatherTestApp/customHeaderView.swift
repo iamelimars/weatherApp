@@ -17,6 +17,7 @@ class customHeaderView: UIView, MXParallaxHeaderProtocol {
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var backButton: UIButton!
     
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -47,6 +48,12 @@ class customHeaderView: UIView, MXParallaxHeaderProtocol {
         
     }
     
+    @IBAction func backPressed(sender: AnyObject) {
+        
+        //self.dismissViewControllerAnimated(weatherTable)
+        //performSelector(weatherTable.dismissVC(weatherTable))
+        
+    }
     override init(frame: CGRect) {
         super.init(frame: frame)
         let subView: UIView = loadViewFromNib()
@@ -59,7 +66,9 @@ class customHeaderView: UIView, MXParallaxHeaderProtocol {
         super.init(coder: aDecoder)
     }
     
+    
     func loadViewFromNib() -> UIView {
+        
         
         
         let view: UIView = UINib(nibName: "customHeader", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! UIView

@@ -2,14 +2,17 @@ PODS:
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
+  - GuillotineMenu (2.0.2)
   - MXParallaxHeader (0.5.1)
 
 DEPENDENCIES:
   - ChameleonFramework/Swift
+  - GuillotineMenu (~> 2.0.2)
   - MXParallaxHeader
 
 SPEC CHECKSUMS:
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  GuillotineMenu: 91ee3c223f42b19ee3f0da85a2645b055755c1f5
   MXParallaxHeader: b40fabd42d1bb76f6d1a713ceae5628f69241bd6
 
 COCOAPODS: 0.39.0

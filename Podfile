@@ -9,6 +9,7 @@ pod 'ChameleonFramework/Swift'
 
 pod "MXParallaxHeader"
 
+pod 'GuillotineMenu', '~> 2.0.2'
 
 end
 
