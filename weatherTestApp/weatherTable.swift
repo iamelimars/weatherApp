@@ -143,6 +143,8 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! weatherCell
         
         
@@ -251,6 +253,8 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
                 self.currentWeather.removeAtIndex(0)
 
                 dispatch_async(dispatch_get_main_queue()) {
+                    
+                    
                     
                     self.tableView.reloadData()
                     
