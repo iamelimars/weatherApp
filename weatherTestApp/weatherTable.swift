@@ -106,7 +106,7 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
         locationManager.startUpdatingLocation()
         startLocation = nil
         performSelector(#selector(stopUpdatingLocation), withObject: self, afterDelay: 1.0)
-        performSelector(#selector(getData), withObject: self, afterDelay: 1.1)
+        performSelector(#selector(getData), withObject: self, afterDelay: 1.5)
         
         }
     func stopUpdatingLocation() {
@@ -130,11 +130,9 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
         let latitude: CLLocationDegrees = latestLocation.coordinate.latitude
         let longitude: CLLocationDegrees = latestLocation.coordinate.longitude
         let currentLocation = CLLocation(latitude: latitude, longitude: longitude)
-        //print(currentLocation)
         
         CLGeocoder().reverseGeocodeLocation(currentLocation, completionHandler: {(placemarks, error) -> Void in
             
-            //print(currentLocation)
             
             if error != nil {
                 
@@ -153,19 +151,15 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
 
                 
             } else {
-                
                 print("Problem with data recieved my geocoder")
-                
             }
-            
         })
-        
-        
-    
     }
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         print(error)
     }
+    
+    
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -205,42 +199,30 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
     
     func getData() {
         let city = self.currentLocationString as String
-        //print(self.currentLocationString)
-        //print(city)
         let replacedCity = (city as NSString).stringByReplacingOccurrencesOfString(" ", withString: "%20")
         let replacedCityComma = (replacedCity as NSString).stringByReplacingOccurrencesOfString(",", withString: "%2C")
         
         
-        
         let url = NSURL(string: "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22\(replacedCityComma)%22)&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=")
-        
         let request = NSMutableURLRequest(URL: url!)
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
             
             func displayError (error: String){
-                
                 print(error)
             }
             if error == nil {
                 
                 guard let data = data else {
-                    
                     displayError("No data was returned from the request")
                     return
                 }
             
-            
                 let result: AnyObject!
-            
                 do {
                     result = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-                    
-                    
                 } catch {
-                    
                     print("Could not parse the data as JSON")
                     return
-                
                 }
                 
                 if let query = result["query"] as? [String: AnyObject]{
@@ -260,7 +242,6 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
                                         self.currentLocationWeather.append(myLocationWeather)
                                     }
                                         
-                                    
                                     for days in forecast {
                                         //print(days)
                                         if let day = days as? [String:AnyObject] {
@@ -287,28 +268,14 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
                 self.currentWeather.removeAtIndex(0)
 
                 dispatch_async(dispatch_get_main_queue()) {
-                    
-                    
-                    
                     self.tableView.reloadData()
-                    
-                    print("dispatchCount: \(self.currentLocationWeather.count)")
-                    
                     let myCurrentWeather = self.currentLocationWeather[0]
                     self.myCustomView.degreesLabel.text = "\(myCurrentWeather.temp)˚"
                     self.myCustomView.descriptionLabel.text = myCurrentWeather.text
-
                 }
-
-                
-                
             }
-            
         }
         task.resume()
-        
-        
-       
     }
 
 }

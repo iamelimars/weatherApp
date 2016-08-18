@@ -14,6 +14,7 @@
 		88335CCB1D64F997002C5E19 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88335CCA1D64F997002C5E19 /* MenuViewController.swift */; };
 		884819A91D62B321004376A1 /* weatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884819A81D62B321004376A1 /* weatherCell.swift */; };
 		884819AC1D62C7A3004376A1 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 884819AB1D62C7A3004376A1 /* CoreLocation.framework */; };
+		88B401A81D66209D00748A71 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B401A71D66209C00748A71 /* MenuCell.swift */; };
 		88D9334E1D5A7223001BE33B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D9334D1D5A7223001BE33B /* AppDelegate.swift */; };
 		88D933501D5A7223001BE33B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D9334F1D5A7223001BE33B /* ViewController.swift */; };
 		88D933531D5A7223001BE33B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88D933511D5A7223001BE33B /* Main.storyboard */; };
@@ -52,6 +53,7 @@
 		88335CCA1D64F997002C5E19 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		884819A81D62B321004376A1 /* weatherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = weatherCell.swift; sourceTree = "<group>"; };
 		884819AB1D62C7A3004376A1 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		88B401A71D66209C00748A71 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		88D9334A1D5A7223001BE33B /* weatherTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = weatherTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88D9334D1D5A7223001BE33B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88D9334F1D5A7223001BE33B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				88335CCA1D64F997002C5E19 /* MenuViewController.swift */,
+				88B401A71D66209C00748A71 /* MenuCell.swift */,
 			);
 			name = MenuViewController;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				88335CB31D63B640002C5E19 /* locationWeather.swift in Sources */,
 				88D933501D5A7223001BE33B /* ViewController.swift in Sources */,
 				88D933621D5AABC9001BE33B /* weatherTable.swift in Sources */,
+				88B401A81D66209D00748A71 /* MenuCell.swift in Sources */,
 				88D933601D5A8E9F001BE33B /* UiUpdates.swift in Sources */,
 				88335CC71D64F4EB002C5E19 /* SWRevealViewController.m in Sources */,
 				88D9334E1D5A7223001BE33B /* AppDelegate.swift in Sources */,

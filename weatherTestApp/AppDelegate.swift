@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let navigationBarAppearace = UINavigationBar.appearance()
+        
+        navigationBarAppearace.tintColor = UIColor.lightGrayColor()
+        navigationBarAppearace.barTintColor = UIColor.darkGrayColor()
+        
+        let customFont = UIFont(name: "HelveticaNeue-Thin", size: 15.0)
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: customFont!], forState: UIControlState.Normal)
+        
+        let searchBarTextAttributes = UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self])
+        searchBarTextAttributes.defaultTextAttributes = [NSForegroundColorAttributeName: UIColor.lightGrayColor()]
+        
+                
         return true
     }
 
