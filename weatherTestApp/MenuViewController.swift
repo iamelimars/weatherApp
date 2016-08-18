@@ -22,7 +22,7 @@ class MenuViewController: UITableViewController {
 
         // self.clearsSelectionOnViewWillAppear = false
 
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        //self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -71,6 +71,20 @@ class MenuViewController: UITableViewController {
         
     }
 
+    @IBAction func backButtonPressed(sender: AnyObject) {
+        
+        self.dismissViewControllerAnimated(false, completion: nil)
+        
+        
+    }
+    
+    
+    @IBAction func searchButtonPressed(sender: AnyObject) {
+        
+        
+        
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

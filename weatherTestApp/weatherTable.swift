@@ -62,16 +62,18 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
         print(self.currentLocationString)
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let secondViewController = segue.destinationViewController as! MenuViewController
-        secondViewController.weatherViewController = self
-    }
+    
  
     override func viewDidAppear(animated: Bool) {
+        
+        
         
         print(testString)
         
         getCurrentLocation()
+        
+        
+        
 
     }
     override func viewDidDisappear(animated: Bool) {
@@ -87,7 +89,14 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
         print("button Pressed")
         
     }
-    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let navVC = segue.destinationViewController as! UINavigationController
+        
+        let secondViewController = navVC.viewControllers.first as! MenuViewController
+        
+        //let secondViewController = segue.destinationViewController as! MenuViewController
+        secondViewController.weatherViewController = self
+    }
     
     func getCurrentLocation() {
         

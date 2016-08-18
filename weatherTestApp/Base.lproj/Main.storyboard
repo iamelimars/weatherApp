@@ -34,7 +34,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="WVC-jE-IP4">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WVC-jE-IP4" id="NtE-XR-SGv">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -47,12 +47,25 @@
                             <outlet property="delegate" destination="MPq-sq-7yJ" id="oDH-3c-mRv"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="sLZ-It-Lnz"/>
+                    <navigationItem key="navigationItem" id="lhV-8k-9cw">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="Y8C-dW-V66">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="backButtonPressed:" destination="MPq-sq-7yJ" id="lEb-JW-779"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="f5h-Vc-Nkw">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="searchButtonPressed:" destination="MPq-sq-7yJ" id="WXr-8n-zA5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VvU-QF-odU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1625.5" y="429.5"/>
+            <point key="canvasLocation" x="2108.5" y="429.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -227,13 +240,32 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <segue destination="0vk-v6-bY7" kind="unwind" identifier="unwindToMenu" unwindAction="unwindToMainMenu:" id="slh-QM-RiP"/>
-                        <segue destination="MPq-sq-7yJ" kind="show" identifier="toWeatherTable" id="gDL-5X-tew"/>
+                        <segue destination="tcG-Qm-xti" kind="show" identifier="toWeatherTable" id="gDL-5X-tew"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S7R-go-C66" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="0vk-v6-bY7" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1131.5" y="429.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="TBu-FB-ECf">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tcG-Qm-xti" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="erk-Kn-6P5">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.1725741029" green="0.21834245320000001" blue="0.44677489999999997" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="MPq-sq-7yJ" kind="relationship" relationship="rootViewController" id="KdM-ep-p66"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uPg-4L-1B6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1626.5" y="429.5"/>
         </scene>
     </scenes>
 </document>
