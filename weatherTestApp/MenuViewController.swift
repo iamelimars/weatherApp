@@ -23,6 +23,8 @@ class MenuViewController: UITableViewController, GMSAutocompleteViewControllerDe
     let locationCLLocation = CLLocation()
     var startLocation: CLLocation!
     var currentLocationString: NSString = ""
+    var sendingString = String()
+    //private var placesClient: GMSPlacesClient!
     
     
     override func viewDidLoad() {
@@ -103,8 +105,22 @@ class MenuViewController: UITableViewController, GMSAutocompleteViewControllerDe
     */
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        weatherViewController?.testString = "from menu vc"
-        
+        if indexPath.row == 0 {
+            weatherViewController?.testString = self.currentLocationString as String
+            
+            
+        }else {
+            
+            let dict = NSUserDefaults.standardUserDefaults().objectForKey("placesArray") as? [[String: String]] ?? [[String: String]]()
+            let myArray = dict[indexPath.row - 1]
+            //let latitude = myArray["latitude"]
+            //let longitude = myArray["longitude"]
+            self.sendingString = myArray["name"]!
+            print("Sending String: \(self.sendingString)")
+            weatherViewController?.testString = self.sendingString
+            
+            
+        }
         
         self.dismissViewControllerAnimated(false, completion: nil)
         
@@ -122,6 +138,9 @@ class MenuViewController: UITableViewController, GMSAutocompleteViewControllerDe
         
         let autoCompleteController = GMSAutocompleteViewController()
         autoCompleteController.delegate = self
+        let filter = GMSAutocompleteFilter()
+        filter.type = .City
+        autoCompleteController.autocompleteFilter = filter
         self.presentViewController(autoCompleteController, animated: true, completion: nil)
         
         //adjust colors of autoCompleteController
@@ -135,6 +154,7 @@ class MenuViewController: UITableViewController, GMSAutocompleteViewControllerDe
         autoCompleteController.tableCellBackgroundColor = darkGray
         autoCompleteController.tableCellSeparatorColor = lightGray
         autoCompleteController.tintColor = lightGray;
+        //autoCompleteController.autocompleteFilter = GM
         
         
         
@@ -191,6 +211,22 @@ class MenuViewController: UITableViewController, GMSAutocompleteViewControllerDe
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
         
     }
+    /*
+    func placeAutocomplete() {
+        let filter = GMSAutocompleteFilter()
+        filter.type = .City
+        placesClient?.autocompleteQuery("Sydney Oper", bounds: nil, filter: filter, callback: { (results, error: NSError?) -> Void in
+            guard error == nil else {
+                print("Autocomplete error \(error)")
+                return
+            }
+            
+            for result in results! {
+                print("Result \(result.attributedFullText) with placeID \(result.placeID)")
+            }
+        })
+    }
+    */
     
     func getCurrentLocation() {
         
@@ -210,7 +246,6 @@ class MenuViewController: UITableViewController, GMSAutocompleteViewControllerDe
         locationManager.stopUpdatingLocation()
         self.tableView.reloadData()
         //myCustomView.cityLabel.text = "City.\(self.currentLocationString)"
-        
         
         
     }

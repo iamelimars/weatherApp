@@ -44,10 +44,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ALA-Jn-VAf">
-                    <rect key="frame" x="8" y="34" width="44" height="44"/>
+                    <rect key="frame" x="8" y="548" width="44" height="44"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="44" id="4QD-KU-xK2"/>
-                        <constraint firstAttribute="width" constant="44" id="Wqu-Nk-R4d"/>
+                        <constraint firstAttribute="height" constant="44" id="M9s-mq-suB"/>
+                        <constraint firstAttribute="width" constant="44" id="yQC-Wz-kcG"/>
                     </constraints>
                     <state key="normal" image="MenuIcon"/>
                     <connections>
@@ -58,10 +58,10 @@
             <color key="backgroundColor" red="0.66902792453765869" green="0.73128575086593628" blue="0.94889926910400391" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="Wyg-tQ-SQI" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Ghf-rY-Ry7"/>
-                <constraint firstItem="ALA-Jn-VAf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="GrU-Rj-efB"/>
+                <constraint firstItem="ALA-Jn-VAf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="MES-Rx-pgB"/>
                 <constraint firstItem="yaO-P9-eoS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="34" id="T75-Pm-Tfg"/>
+                <constraint firstItem="ALA-Jn-VAf" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottomMargin" id="UOe-AW-Trt"/>
                 <constraint firstItem="U4J-JR-RlY" firstAttribute="top" secondItem="Wyg-tQ-SQI" secondAttribute="bottom" constant="8" id="ceJ-eY-XrM"/>
-                <constraint firstItem="ALA-Jn-VAf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="34" id="csh-Od-TaM"/>
                 <constraint firstItem="U4J-JR-RlY" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="q3a-k9-CUw"/>
                 <constraint firstItem="yaO-P9-eoS" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="tML-ew-xnE"/>
                 <constraint firstItem="Wyg-tQ-SQI" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ub8-0U-98i"/>

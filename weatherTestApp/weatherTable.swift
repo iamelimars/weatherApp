@@ -33,15 +33,16 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("viewDidLoad----------------")
         daysArray = ["Tommorrow", "2.Days.Out", "3.Days.Out", "4.Days.Out", "5.Days.Out", "6.Days.Out", "7.Days.Out", "8.Days.Out"]
         
         //http://www.mapquestapi.com/geocoding/v1/reverse?key=20nebg0CcusFuel5NExAlbSALLkwuQmN&callback=renderReverse&location=40.053116,-76.313603
         
         tableView.delegate = self
         tableView.dataSource = self
-        self.tableView.parallaxHeader.height = 400
+        self.tableView.parallaxHeader.height = 300
         self.tableView.parallaxHeader.mode = MXParallaxHeaderMode.Fill
-        self.tableView.parallaxHeader.minimumHeight = 20
+        self.tableView.parallaxHeader.minimumHeight = 150
         self.tableView.parallaxHeader.view?.backgroundColor = UIColor.flatTealColor()
         
         //self.tableView.parallaxHeader.view = NSBundle.mainBundle().loadNibNamed("customHeader", owner: self, options: nil).first as? UIView
@@ -51,38 +52,45 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
         myCustomView = UINib(nibName: "customHeader", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! customHeaderView
         myCustomView.changeBackground(UIColor.flatBlueColor(), color2: UIColor.flatWhiteColor())
         myCustomView.backButton.addTarget(self, action: #selector(weatherTable.dismissVC(_:)), forControlEvents: .TouchUpInside)
-        //let backButton = myCustomView.backButton as UIButton
+        let myBackButton = myCustomView.backButton as UIButton
         //backButton.addTarget(self, action: Selector(dismissVC()), forControlEvents:.TouchUpInside)
-        
+        self.parallaxHeader?.view?.addSubview(myBackButton)
         self.tableView.parallaxHeader.view = myCustomView
+ 
+        //print(self.currentLocationString)
+        print("viewLoaded----------------")
         
-        
-        
-        
-        print(self.currentLocationString)
     }
 
-    
  
     override func viewDidAppear(animated: Bool) {
-        
-        
-        
-        print(testString)
-        
-        getCurrentLocation()
-        
+        print("viewdidappear----------------")
+        print("\(testString)")
+        if testString == "" {
+            
+            getCurrentLocation()
+            
+            
+        } else {
+            
+            myCustomView.cityLabel.text = "City.\(testString)"
+
+            getData(testString)
+            
+        }
         
         
 
     }
     override func viewDidDisappear(animated: Bool) {
         
+        print("viewDiddisappear----------------")
+        self.currentWeather = []
         self.currentLocationWeather = []
         
     }
     func dismissVC(sender:UIButton) {
-        
+        print("dismissVC-------------")
         //self.dismissViewControllerAnimated(false, completion: nil)
         
         self.performSegueWithIdentifier("toWeatherTable", sender: self)
@@ -99,24 +107,24 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
     }
     
     func getCurrentLocation() {
-        
+        print("getCurrentLocation--------------")
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         startLocation = nil
         performSelector(#selector(stopUpdatingLocation), withObject: self, afterDelay: 1.0)
-        performSelector(#selector(getData), withObject: self, afterDelay: 1.5)
+        //performSelector(Selector(getData(self.currentLocationString as String)), withObject: self, afterDelay: 1.5)
         
         }
     func stopUpdatingLocation() {
         //
+        print("Stop editing Location-----------------")
         print(currentLocationWeather.count)
         
         locationManager.stopUpdatingLocation()
         myCustomView.cityLabel.text = "City.\(self.currentLocationString)"
-        
-        
+        getData(self.currentLocationString as String)
         
     }
     
@@ -124,8 +132,8 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
+        print("locationManager----------")
         let latestLocation: AnyObject = locations[locations.count - 1]
-        
         
         let latitude: CLLocationDegrees = latestLocation.coordinate.latitude
         let longitude: CLLocationDegrees = latestLocation.coordinate.longitude
@@ -155,17 +163,20 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
             }
         })
     }
+    
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("didFailWithError------------------")
         print(error)
+        
     }
     
-    
-    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        print("numberofsections-----------------")
         return 1
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("rowsinsection-----------------")
         return currentWeather.count
     }
     
@@ -174,11 +185,8 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
         
         
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! weatherCell
-        
-        
-        
+        print("cellforrow-------------------------")
         let weather = currentWeather[indexPath.row]
-        
         cell.descriptionLabel.text = weather.text
         cell.hiLabel.text = weather.high
         cell.lowLabel.text = weather.low
@@ -188,7 +196,9 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
         
     }
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        print("heightforrow----------------------")
         return 75.0
+        
     }
     
     
@@ -197,9 +207,10 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
     }
     
     
-    func getData() {
+    func getData(currentCity:String) {
+        print("getData----------------------")
         let city = self.currentLocationString as String
-        let replacedCity = (city as NSString).stringByReplacingOccurrencesOfString(" ", withString: "%20")
+        let replacedCity = (currentCity as NSString).stringByReplacingOccurrencesOfString(" ", withString: "%20")
         let replacedCityComma = (replacedCity as NSString).stringByReplacingOccurrencesOfString(",", withString: "%2C")
         
         
@@ -245,17 +256,17 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
                                     for days in forecast {
                                         //print(days)
                                         if let day = days as? [String:AnyObject] {
-                                            if self.currentWeather.count <= 6 {
+                                            //if self.currentWeather.count <= 6 {
                                             
                                                 let weather = Weather()
-                                                weather.date = days["date"] as! String
-                                                weather.day = days["day"] as! String
-                                                weather.high = days["high"] as! String
-                                                weather.low = days["low"] as! String
-                                                weather.text = days["text"] as! String
+                                                weather.date = day["date"] as! String
+                                                weather.day = day["day"] as! String
+                                                weather.high = day["high"] as! String
+                                                weather.low = day["low"] as! String
+                                                weather.text = day["text"] as! String
                                                 self.currentWeather.append(weather)
                                                 
-                                            }
+                                            //}
                                             
                                         }
                                     }
@@ -265,9 +276,10 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
                     }
                 }
                 
-                self.currentWeather.removeAtIndex(0)
+                //self.currentWeather.removeAtIndex(0)
 
                 dispatch_async(dispatch_get_main_queue()) {
+                    
                     self.tableView.reloadData()
                     let myCurrentWeather = self.currentLocationWeather[0]
                     self.myCustomView.degreesLabel.text = "\(myCurrentWeather.temp)˚"
@@ -276,6 +288,7 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
             }
         }
         task.resume()
+        print("getDataFinished---------------------------------------------------")
     }
 
 }

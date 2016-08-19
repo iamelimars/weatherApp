@@ -58,6 +58,7 @@ class customHeaderView: UIView, MXParallaxHeaderProtocol {
         super.init(frame: frame)
         let subView: UIView = loadViewFromNib()
         subView.frame = self.bounds
+        subView.addSubview(backButton)
         addSubview(subView)
         
     }
@@ -68,6 +69,7 @@ class customHeaderView: UIView, MXParallaxHeaderProtocol {
     
     
     func loadViewFromNib() -> UIView {
+        
         
         
         
