@@ -1,4 +1,5 @@
 PODS:
+  - BAFluidView (0.2.3)
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
@@ -16,12 +17,14 @@ PODS:
   - MXParallaxHeader (0.5.1)
 
 DEPENDENCIES:
+  - BAFluidView
   - ChameleonFramework/Swift
   - GooglePlacePicker
   - GuillotineMenu (~> 2.0.2)
   - MXParallaxHeader
 
 SPEC CHECKSUMS:
+  BAFluidView: 5d84ef109831b97740f75b6d785e51f13fa08398
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   GoogleMaps: f09da64fc987c1aa29394567c3cab5a3df83c402
   GooglePlacePicker: e7b11b732e40dbe76e8ab4c5fc2f4a7c32b96578

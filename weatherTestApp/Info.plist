@@ -42,6 +42,6 @@
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>App needs location servers for stuff.</string>
+	<string>Your Location Is Needed To Check Your Weather.</string>
 </dict>
 </plist>

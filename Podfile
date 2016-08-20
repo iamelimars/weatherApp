@@ -13,5 +13,7 @@ pod 'GuillotineMenu', '~> 2.0.2'
 
 pod 'GooglePlacePicker'
 
+pod "BAFluidView"
+
 end
 

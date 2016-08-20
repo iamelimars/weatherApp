@@ -49,6 +49,8 @@ class MenuViewController: UITableViewController, GMSAutocompleteViewControllerDe
         defaults.synchronize()
         
         getCurrentLocation()
+        
+        
         self.tableView.reloadData()
         
     }
@@ -319,6 +321,19 @@ class MenuViewController: UITableViewController, GMSAutocompleteViewControllerDe
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
+    }
+    
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        if status == .AuthorizedAlways {
+            if CLLocationManager.isMonitoringAvailableForClass(CLBeaconRegion.self) {
+                if CLLocationManager.isRangingAvailable() {
+                    
+                    
+                    
+                    
+                }
+            }
+        }
     }
     
 

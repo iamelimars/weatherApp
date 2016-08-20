@@ -114,7 +114,6 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
         locationManager.startUpdatingLocation()
         startLocation = nil
         performSelector(#selector(stopUpdatingLocation), withObject: self, afterDelay: 1.0)
-        //performSelector(Selector(getData(self.currentLocationString as String)), withObject: self, afterDelay: 1.5)
         
         }
     func stopUpdatingLocation() {
@@ -122,6 +121,8 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
         print("Stop editing Location-----------------")
         print(currentLocationWeather.count)
         
+        //performSelector(Selector(getData(self.currentLocationString as String)), withObject: self, afterDelay: 3.0)
+
         locationManager.stopUpdatingLocation()
         myCustomView.cityLabel.text = "City.\(self.currentLocationString)"
         getData(self.currentLocationString as String)
