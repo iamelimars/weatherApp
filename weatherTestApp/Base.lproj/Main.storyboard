@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gBL-Lh-Puk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Fbg-bf-fOa">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Reveal View Controller-->
@@ -203,6 +204,36 @@
             </objects>
             <point key="canvasLocation" x="1435.5" y="-389.5"/>
         </scene>
+        <!--Animation View Controller-->
+        <scene sceneID="7vp-W5-AsJ">
+            <objects>
+                <viewController id="Fbg-bf-fOa" customClass="AnimationViewController" customModule="weatherTestApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2s7-be-GJa"/>
+                        <viewControllerLayoutGuide type="bottom" id="2N9-HJ-VXc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sbN-fG-ubH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="rDf-Gg-HJc">
+                                <rect key="frame" x="-4" y="0.0" width="383" height="667"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="rDf-Gg-HJc" secondAttribute="trailing" constant="-20" id="R8W-n6-SKI"/>
+                            <constraint firstItem="rDf-Gg-HJc" firstAttribute="top" secondItem="sbN-fG-ubH" secondAttribute="topMargin" id="YdT-rn-1A9"/>
+                            <constraint firstItem="rDf-Gg-HJc" firstAttribute="leading" secondItem="sbN-fG-ubH" secondAttribute="leadingMargin" constant="-20" id="rh4-gH-p7h"/>
+                            <constraint firstItem="2N9-HJ-VXc" firstAttribute="top" secondItem="rDf-Gg-HJc" secondAttribute="bottom" id="w5v-9w-Owd"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XI0-Jx-M9d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="539.5" y="429.5"/>
+        </scene>
         <!--Weather Table-->
         <scene sceneID="Ypr-NW-0Op">
             <objects>
@@ -295,4 +326,7 @@
             <point key="canvasLocation" x="1626.5" y="429.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="LaunchScreen" width="1080" height="1920"/>
+    </resources>
 </document>
