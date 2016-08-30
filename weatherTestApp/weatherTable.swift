@@ -27,6 +27,9 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
     var currentWeather = [Weather]()
     var currentLocationWeather = [locationWeather]()
     var testString = ""
+    var coldColors = [UIColor]()
+    var hotColors = [UIColor]()
+    var normalColors = [UIColor]()
     
     var currentConditionArray = [String:String]()
     
@@ -39,7 +42,7 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
         
         tableView.delegate = self
         tableView.dataSource = self
-        self.tableView.parallaxHeader.height = 400
+        self.tableView.parallaxHeader.height = self.view.frame.size.height - 150
         self.tableView.parallaxHeader.mode = MXParallaxHeaderMode.Fill
         self.tableView.parallaxHeader.minimumHeight = 150
         self.tableView.parallaxHeader.view?.backgroundColor = UIColor.flatTealColor()
@@ -48,8 +51,16 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
         
         self.navigationController?.navigationBarHidden = true
         
+        coldColors = [UIColor.flatBlueColor(),
+                      UIColor.flatWhiteColor()]
+        hotColors = [UIColor.flatRedColor(),
+                         UIColor.flatOrangeColor()]
+        normalColors = [UIColor.flatOrangeColor(),
+                            UIColor.flatSkyBlueColor()]
+        
         myCustomView = UINib(nibName: "customHeader", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! customHeaderView
-        myCustomView.changeBackground(UIColor.flatBlueColor(), color2: UIColor.flatWhiteColor())
+        //myCustomView.changeBackground(UIColor.flatBlueColor(), color2: UIColor.flatWhiteColor())
+        myCustomView.backgroundColor = UIColor.init(gradientStyle: UIGradientStyle.TopToBottom, withFrame: self.view.frame, andColors: normalColors)
         myCustomView.backButton.addTarget(self, action: #selector(weatherTable.dismissVC(_:)), forControlEvents: .TouchUpInside)
         let myBackButton = myCustomView.backButton as UIButton
         //backButton.addTarget(self, action: Selector(dismissVC()), forControlEvents:.TouchUpInside)
@@ -81,6 +92,15 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
         
         self.currentWeather = []
         self.currentLocationWeather = []
+        
+    }
+    func changeParallaxBackground(color1: UIColor, color2: UIColor, parallaxView: UIView) -> Void{
+        let colors = [color1,
+                      color2]
+        
+        //self.backgroundColor = UIColor.init(gradientStyle: UIGradientStyle.TopToBottom, withFrame: self.frame, andColors: colors)
+        //parallaxView.backgroundColor = UIColor.blackColor()
+        //self.backgroundView.backgroundColor = UIColor.init(gradientStyle: UIGradientStyle.TopToBottom, withFrame: self.backgroundView.frame, andColors: colors)
         
     }
     func dismissVC(sender:UIButton) {
@@ -197,7 +217,6 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
         let replacedCity = (currentCity as NSString).stringByReplacingOccurrencesOfString(" ", withString: "%20")
         let replacedCityComma = (replacedCity as NSString).stringByReplacingOccurrencesOfString(",", withString: "%2C")
         
-        
         let url = NSURL(string: "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22\(replacedCityComma)%22)&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=")
         let request = NSMutableURLRequest(URL: url!)
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
@@ -215,6 +234,7 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
                 let result: AnyObject!
                 do {
                     result = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+                    print(result)
                 } catch {
                     print("Could not parse the data as JSON")
                     return
@@ -300,7 +320,27 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
                     
                     self.tableView.reloadData()
                     let myCurrentWeather = self.currentLocationWeather[0]
+                    
                     self.myCustomView.degreesLabel.text = "\(myCurrentWeather.temp)˚"
+                    let degreesString: String = myCurrentWeather.temp
+                    let a:Int? = Int(degreesString)
+                    
+                    if a <= 60 {
+                        
+                        self.myCustomView.backgroundColor = UIColor.init(gradientStyle: UIGradientStyle.TopToBottom, withFrame: self.view.frame, andColors: self.coldColors)
+
+                        
+                    } else if a>60 && a <= 75 {
+                        
+                        self.myCustomView.backgroundColor = UIColor.init(gradientStyle: UIGradientStyle.TopToBottom, withFrame: self.view.frame, andColors: self.normalColors)
+                        
+                        
+                    } else if a > 75 {
+                        
+                        self.myCustomView.backgroundColor = UIColor.init(gradientStyle: UIGradientStyle.TopToBottom, withFrame: self.view.frame, andColors: self.hotColors)
+
+                    }
+                    
                     self.myCustomView.descriptionLabel.text = myCurrentWeather.text
                 }
             }

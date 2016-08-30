@@ -10,7 +10,6 @@ import UIKit
 import CoreLocation
 
 class AnimationViewController: UIViewController, CLLocationManagerDelegate {
-    @IBOutlet weak var weatherButton: UIButton!
     var locationManager: CLLocationManager!
 
     override func viewDidLoad() {
@@ -19,12 +18,6 @@ class AnimationViewController: UIViewController, CLLocationManagerDelegate {
         // Do any additional setup after loading the view.
         
         //weatherButton.titleLabel?.text = "Weather"
-        weatherButton.titleLabel?.textColor = UIColor.whiteColor()
-        weatherButton.backgroundColor = UIColor.clearColor()
-        weatherButton.layer.cornerRadius = 5.0
-        weatherButton.layer.borderWidth = 0.5
-        weatherButton.layer.borderColor = UIColor.whiteColor().CGColor
-        weatherButton.hidden = true
         
         let introCircle = animatedCircle()
         introCircle.circleAnimation(200, height: 200, strokeColor: UIColor.whiteColor(), view: self.view)
@@ -39,11 +32,7 @@ class AnimationViewController: UIViewController, CLLocationManagerDelegate {
     }
     
 
-    @IBAction func weatherButtonPressed(sender: AnyObject) {
-        
-        performSegueWithIdentifier("introToMain", sender: self)
-        
-    }
+    
     /*
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .AuthorizedAlways {
@@ -72,20 +61,17 @@ class AnimationViewController: UIViewController, CLLocationManagerDelegate {
         case .NotDetermined:
             // If status has not yet been determied, ask for authorization
             print("NoeDetermined")
-            weatherButton.hidden = true
             manager.requestWhenInUseAuthorization()
             break
         case .AuthorizedWhenInUse:
             // If authorized when in use
             print("authorizedWhenInUse")
-            weatherButton.hidden = false
             manager.startUpdatingLocation()
             NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: #selector(AnimationViewController.segueToMain), userInfo: nil, repeats: false)
             break
         case .AuthorizedAlways:
             // If always authorized
             print("authorizedAlways")
-            weatherButton.hidden = false
             manager.startUpdatingLocation()
             break
         case .Restricted:
@@ -94,7 +80,6 @@ class AnimationViewController: UIViewController, CLLocationManagerDelegate {
             break
         case .Denied:
             print("If user denied your app access to Location Services, but can grant access from Settings.app")
-            weatherButton.hidden = true
             break
         }
     }
