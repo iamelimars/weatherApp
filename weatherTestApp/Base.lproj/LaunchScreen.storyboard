@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,17 +17,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="RyS-dK-1Rb">
-                                <rect key="frame" x="-4" y="0.0" width="383" height="667"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="180 - weatherAppIcon" translatesAutoresizingMaskIntoConstraints="NO" id="1CE-C4-dBa">
+                                <rect key="frame" x="111" y="257" width="153" height="153"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="RyS-dK-1Rb" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" id="Nye-FP-S3g"/>
-                            <constraint firstItem="RyS-dK-1Rb" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-20" id="Rxm-Gb-Lhs"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="RyS-dK-1Rb" secondAttribute="bottom" id="WXa-Xw-1rE"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="RyS-dK-1Rb" secondAttribute="trailing" constant="-20" id="xHC-Wq-lMi"/>
-                        </constraints>
+                        <color key="backgroundColor" red="0.029267286881804466" green="0.011618193238973618" blue="0.0034396825358271599" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
@@ -38,6 +31,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LaunchScreen" width="1080" height="1920"/>
+        <image name="180 - weatherAppIcon" width="180" height="180"/>
     </resources>
 </document>
