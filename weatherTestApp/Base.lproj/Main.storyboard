@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Reveal View Controller-->
@@ -216,19 +215,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="rDf-Gg-HJc">
-                                <rect key="frame" x="-4" y="0.0" width="383" height="667"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOC-rA-9SH">
+                                <rect key="frame" x="51" y="554" width="273" height="46"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
+                                <state key="normal" title="BEGIN">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="weatherButtonPressed:" destination="Fbg-bf-fOa" eventType="touchUpInside" id="qxB-HU-Esp"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="180 - weatherAppIcon" translatesAutoresizingMaskIntoConstraints="NO" id="YO5-eC-nmH">
+                                <rect key="frame" x="111" y="257" width="153" height="153"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="rDf-Gg-HJc" secondAttribute="trailing" constant="-20" id="R8W-n6-SKI"/>
-                            <constraint firstItem="rDf-Gg-HJc" firstAttribute="top" secondItem="sbN-fG-ubH" secondAttribute="topMargin" id="YdT-rn-1A9"/>
-                            <constraint firstItem="rDf-Gg-HJc" firstAttribute="leading" secondItem="sbN-fG-ubH" secondAttribute="leadingMargin" constant="-20" id="rh4-gH-p7h"/>
-                            <constraint firstItem="2N9-HJ-VXc" firstAttribute="top" secondItem="rDf-Gg-HJc" secondAttribute="bottom" id="w5v-9w-Owd"/>
-                        </constraints>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="weatherButton" destination="dOC-rA-9SH" id="ltC-vT-sN3"/>
+                        <segue destination="gBL-Lh-Puk" kind="show" identifier="introToMain" id="TVO-tx-VGV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XI0-Jx-M9d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -327,6 +335,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LaunchScreen" width="1080" height="1920"/>
+        <image name="180 - weatherAppIcon" width="180" height="180"/>
     </resources>
 </document>

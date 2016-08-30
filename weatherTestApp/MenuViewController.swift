@@ -30,7 +30,7 @@ class MenuViewController: UITableViewController, GMSAutocompleteViewControllerDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        GMSPlacesClient.provideAPIKey("AIzaSyBF3gQH1VS3an12xVfH0OaHfZyUp2JDREM")
+        
         
         TableArray = ["Weather","Second","Third"]
         
@@ -38,11 +38,35 @@ class MenuViewController: UITableViewController, GMSAutocompleteViewControllerDe
         UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: customFont!], forState: UIControlState.Normal)
         self.navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: customFont!], forState: UIControlState.Normal)
 
+        
+        
+        
     }
     override func viewDidAppear(animated: Bool) {
         
-        placesArray = NSUserDefaults.standardUserDefaults().objectForKey("placesArray") as! [[String:AnyObject]]
         
+        
+        if placesArray.count == 0 {
+        
+        let Dict: [String:AnyObject] = ["name":"Cupertino, CA",
+                                        "latitude":"37.331002°",
+                                        "longitude":"-122.029663°"]
+        placesArray.append(Dict)
+            
+            let defaults = NSUserDefaults.standardUserDefaults()
+            defaults.removeObjectForKey("placesArray")
+            defaults.setObject(placesArray, forKey:"placesArray")
+            defaults.synchronize()
+            
+            self.tableView.reloadData()
+        
+            
+        } else {
+        
+        
+        
+        placesArray = NSUserDefaults.standardUserDefaults().objectForKey("placesArray") as! [[String:AnyObject]]
+        print(placesArray.count)
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.removeObjectForKey("placesArray")
         defaults.setObject(placesArray, forKey:"placesArray")
@@ -53,6 +77,7 @@ class MenuViewController: UITableViewController, GMSAutocompleteViewControllerDe
         
         self.tableView.reloadData()
         
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

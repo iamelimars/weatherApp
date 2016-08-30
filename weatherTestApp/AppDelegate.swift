@@ -29,6 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let searchBarTextAttributes = UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self])
         searchBarTextAttributes.defaultTextAttributes = [NSForegroundColorAttributeName: UIColor.lightGrayColor()]
         
+        GMSPlacesClient.provideAPIKey("AIzaSyBF3gQH1VS3an12xVfH0OaHfZyUp2JDREM")
+        
                 
         return true
     }
