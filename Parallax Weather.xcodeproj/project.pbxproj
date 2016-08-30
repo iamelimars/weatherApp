@@ -60,7 +60,7 @@
 		884819AB1D62C7A3004376A1 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		88B401A71D66209C00748A71 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		88C618F11D7550AE0025D397 /* WeatherDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherDetails.swift; sourceTree = "<group>"; };
-		88D9334A1D5A7223001BE33B /* weatherTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = weatherTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		88D9334A1D5A7223001BE33B /* Parallax Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Parallax Weather.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88D9334D1D5A7223001BE33B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88D9334F1D5A7223001BE33B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		88D933521D5A7223001BE33B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -181,7 +181,7 @@
 		88D9334B1D5A7223001BE33B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				88D9334A1D5A7223001BE33B /* weatherTestApp.app */,
+				88D9334A1D5A7223001BE33B /* Parallax Weather.app */,
 				88335CBA1D64ED31002C5E19 /* weatherAppTests.xctest */,
 			);
 			name = Products;
@@ -234,9 +234,9 @@
 			productReference = 88335CBA1D64ED31002C5E19 /* weatherAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		88D933491D5A7223001BE33B /* weatherTestApp */ = {
+		88D933491D5A7223001BE33B /* Parallax Weather */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 88D9335C1D5A7223001BE33B /* Build configuration list for PBXNativeTarget "weatherTestApp" */;
+			buildConfigurationList = 88D9335C1D5A7223001BE33B /* Build configuration list for PBXNativeTarget "Parallax Weather" */;
 			buildPhases = (
 				01689CEC6D6E21E1831E5934 /* Check Pods Manifest.lock */,
 				88D933461D5A7223001BE33B /* Sources */,
@@ -249,9 +249,9 @@
 			);
 			dependencies = (
 			);
-			name = weatherTestApp;
+			name = "Parallax Weather";
 			productName = weatherTestApp;
-			productReference = 88D9334A1D5A7223001BE33B /* weatherTestApp.app */;
+			productReference = 88D9334A1D5A7223001BE33B /* Parallax Weather.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -275,7 +275,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 88D933451D5A7222001BE33B /* Build configuration list for PBXProject "weatherTestApp" */;
+			buildConfigurationList = 88D933451D5A7222001BE33B /* Build configuration list for PBXProject "Parallax Weather" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -288,7 +288,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				88D933491D5A7223001BE33B /* weatherTestApp */,
+				88D933491D5A7223001BE33B /* Parallax Weather */,
 				88335CB91D64ED31002C5E19 /* weatherAppTests */,
 			);
 		};
@@ -400,7 +400,7 @@
 /* Begin PBXTargetDependency section */
 		88335CC01D64ED32002C5E19 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 88D933491D5A7223001BE33B /* weatherTestApp */;
+			target = 88D933491D5A7223001BE33B /* Parallax Weather */;
 			targetProxy = 88335CBF1D64ED32002C5E19 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -433,7 +433,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.EliMarsh.weatherAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/weatherTestApp.app/weatherTestApp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Parallax Weather.app/Parallax Weather";
 			};
 			name = Debug;
 		};
@@ -445,7 +445,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.EliMarsh.weatherAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/weatherTestApp.app/weatherTestApp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Parallax Weather.app/Parallax Weather";
 			};
 			name = Release;
 		};
@@ -541,7 +541,7 @@
 				INFOPLIST_FILE = weatherTestApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.EliMarsh.weatherTestApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Parallax Weather";
 				SWIFT_OBJC_BRIDGING_HEADER = "weatherTestApp/weatherTestApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -556,7 +556,7 @@
 				INFOPLIST_FILE = weatherTestApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.EliMarsh.weatherTestApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Parallax Weather";
 				SWIFT_OBJC_BRIDGING_HEADER = "weatherTestApp/weatherTestApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -574,7 +574,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		88D933451D5A7222001BE33B /* Build configuration list for PBXProject "weatherTestApp" */ = {
+		88D933451D5A7222001BE33B /* Build configuration list for PBXProject "Parallax Weather" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				88D9335A1D5A7223001BE33B /* Debug */,
@@ -583,7 +583,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		88D9335C1D5A7223001BE33B /* Build configuration list for PBXNativeTarget "weatherTestApp" */ = {
+		88D9335C1D5A7223001BE33B /* Build configuration list for PBXNativeTarget "Parallax Weather" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				88D9335D1D5A7223001BE33B /* Debug */,

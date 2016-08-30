@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:weatherTestApp.xcodeproj">
+      location = "group:/Users/imac/Desktop/ObjectiveC1/weatherTestApp/Parallax Weather.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
