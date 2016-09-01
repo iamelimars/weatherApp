@@ -77,6 +77,7 @@ class AnimationViewController: UIViewController, CLLocationManagerDelegate {
             break
         case .Restricted:
             // If restricted by e.g. parental controls. User can't enable Location Services
+            self.customAlertView(UIColor.flatWhiteColor(), customTitle: "Location Services Restricted 🚫")
             print("restricted")
             break
         case .Denied:
