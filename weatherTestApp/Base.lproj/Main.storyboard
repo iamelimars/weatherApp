@@ -127,18 +127,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="180 - weatherAppIcon" translatesAutoresizingMaskIntoConstraints="NO" id="YO5-eC-nmH">
-                                <rect key="frame" x="111" y="257" width="153" height="153"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parallax Weather" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z4H-Rr-SVC">
+                                <rect key="frame" x="102" y="120" width="170" height="61"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="153" id="QXW-dL-6It"/>
-                                    <constraint firstAttribute="height" constant="153" id="mHo-ZY-QRd"/>
+                                    <constraint firstAttribute="width" constant="170" id="Gid-UK-sSD"/>
+                                    <constraint firstAttribute="height" constant="61" id="f3E-xT-rWU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="23"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Marshall Development" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TsL-Ut-fli">
+                                <rect key="frame" x="95" y="637" width="184" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="hOr-mz-qv8"/>
+                                    <constraint firstAttribute="width" constant="184" id="kqR-zp-nG3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="13"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WeatherLaunchScreenIcon" translatesAutoresizingMaskIntoConstraints="NO" id="YO5-eC-nmH">
+                                <rect key="frame" x="147" y="301" width="80" height="66"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="66" id="GHW-2u-jaE"/>
+                                    <constraint firstAttribute="width" constant="80" id="S7K-k9-ho7"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="YO5-eC-nmH" firstAttribute="centerX" secondItem="sbN-fG-ubH" secondAttribute="centerX" id="8aF-Hv-qRP"/>
-                            <constraint firstItem="YO5-eC-nmH" firstAttribute="centerY" secondItem="sbN-fG-ubH" secondAttribute="centerY" id="Kgr-DP-m3S"/>
+                            <constraint firstItem="2N9-HJ-VXc" firstAttribute="top" secondItem="TsL-Ut-fli" secondAttribute="bottom" constant="8" id="BgX-2t-fRb"/>
+                            <constraint firstItem="TsL-Ut-fli" firstAttribute="centerX" secondItem="sbN-fG-ubH" secondAttribute="centerX" id="CO5-Qw-PrS"/>
+                            <constraint firstItem="YO5-eC-nmH" firstAttribute="centerX" secondItem="sbN-fG-ubH" secondAttribute="centerX" id="IG0-BK-aad"/>
+                            <constraint firstItem="YO5-eC-nmH" firstAttribute="centerY" secondItem="sbN-fG-ubH" secondAttribute="centerY" id="TwI-DJ-Gjo"/>
+                            <constraint firstItem="z4H-Rr-SVC" firstAttribute="top" secondItem="2s7-be-GJa" secondAttribute="bottom" constant="100" id="c9w-G8-qa3"/>
+                            <constraint firstItem="z4H-Rr-SVC" firstAttribute="centerX" secondItem="sbN-fG-ubH" secondAttribute="centerX" id="uPp-yo-fjj"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -243,6 +267,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="180 - weatherAppIcon" width="180" height="180"/>
+        <image name="WeatherLaunchScreenIcon" width="458" height="424"/>
     </resources>
 </document>

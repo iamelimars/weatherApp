@@ -45,7 +45,7 @@ class MenuViewController: UITableViewController, GMSAutocompleteViewControllerDe
     override func viewDidAppear(animated: Bool) {
         
         
-        
+        /*
         if placesArray.count == 0 {
         
         let Dict: [String:AnyObject] = ["name":"Cupertino, CA",
@@ -63,7 +63,7 @@ class MenuViewController: UITableViewController, GMSAutocompleteViewControllerDe
             
         } else {
         
-        
+        */
         
         placesArray = NSUserDefaults.standardUserDefaults().objectForKey("placesArray") as! [[String:AnyObject]]
         print(placesArray.count)
@@ -77,7 +77,7 @@ class MenuViewController: UITableViewController, GMSAutocompleteViewControllerDe
         
         self.tableView.reloadData()
         
-        }
+        //}
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -112,7 +112,7 @@ class MenuViewController: UITableViewController, GMSAutocompleteViewControllerDe
             //let defaults = NSUserDefaults.standardUserDefaults()
             let dict = NSUserDefaults.standardUserDefaults().objectForKey("placesArray") as? [[String: String]] ?? [[String: String]]()
             print(dict[indexPath.row-1])
-            let myArray = dict[indexPath.row - 1] as! [String:String]
+            let myArray = dict[indexPath.row - 1]
             let latitude = myArray["latitude"]
             let longitude = myArray["longitude"]
             cell.topLabel.text = myArray["name"]

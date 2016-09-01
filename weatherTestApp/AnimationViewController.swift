@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import JSSAlertView
 
 class AnimationViewController: UIViewController, CLLocationManagerDelegate {
     var locationManager: CLLocationManager!
@@ -79,9 +80,44 @@ class AnimationViewController: UIViewController, CLLocationManagerDelegate {
             print("restricted")
             break
         case .Denied:
+            self.customAlertView(UIColor.flatWhiteColor(), customTitle: "Go To Settings? 🤔")
+            
             print("If user denied your app access to Location Services, but can grant access from Settings.app")
             break
         }
+    }
+
+    func customAlertView (alertColor: UIColor, customTitle: String) {
+        
+        let alertview = JSSAlertView().show(self,
+                                            title: customTitle,
+                                            text: "Your location is needed to use this app. 😊",
+                                            buttonText: "OK?",
+                                            color: alertColor,
+                                            cancelButtonText: "Cancel"
+        )
+        alertview.addCancelAction(myCancelCallback)
+        alertview.addAction(self.myCallback) // Method to run after dismissal
+        alertview.setTitleFont("HelveticaNeue-Light") // Title font
+        alertview.setTextFont("HelveticaNeue-Thin") // Alert body text font
+        alertview.setButtonFont("HelveticaNeue-UltraLight") // Button text font
+        alertview.setTextTheme(.Dark) // can be .Light or .Dark
+        
+    }
+    func myCancelCallback() {
+        
+        
+        
+    }
+    
+    func myCallback() {
+        // this'll run after the alert is dismissed
+        
+        let settingsUrl = NSURL(string: UIApplicationOpenSettingsURLString)
+        if let url = settingsUrl {
+            UIApplication.sharedApplication().openURL(url)
+        }
+        
     }
 
     

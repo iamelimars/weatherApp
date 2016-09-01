@@ -10,6 +10,8 @@ import UIKit
 import MXParallaxHeader
 import ChameleonFramework
 import CoreLocation
+import JSSAlertView
+
 
 
 
@@ -22,10 +24,12 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
     var startLocation: CLLocation!
     var currentLocationString: NSString = ""
     var myCustomView: customHeaderView! = nil
+    var myErrorPage: errorView! = nil
     //var longitude: CLLocationDegrees!
     //var latitude: CLLocationDegrees!
     var currentWeather = [Weather]()
     var currentLocationWeather = [locationWeather]()
+    var currentWeatherDetails = [WeatherDetails]()
     var testString = ""
     var coldColors = [UIColor]()
     var hotColors = [UIColor]()
@@ -73,30 +77,22 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
  
     override func viewDidAppear(animated: Bool) {
         if testString == "" {
-            
             getCurrentLocation()
-            
-            
         } else {
-            
             myCustomView.cityLabel.text = "City.\(testString)"
-
             getData(testString)
-            
         }
-        
-        
-
     }
     override func viewDidDisappear(animated: Bool) {
         
         self.currentWeather = []
         self.currentLocationWeather = []
+        self.currentWeatherDetails = []
         
     }
     func changeParallaxBackground(color1: UIColor, color2: UIColor, parallaxView: UIView) -> Void{
-        let colors = [color1,
-                      color2]
+        //let colors = [color1,
+         //             color2]
         
         //self.backgroundColor = UIColor.init(gradientStyle: UIGradientStyle.TopToBottom, withFrame: self.frame, andColors: colors)
         //parallaxView.backgroundColor = UIColor.blackColor()
@@ -210,7 +206,36 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         //NSLog("progress %f", scrollView.parallaxHeader.progress)
     }
+
     
+    func customAlertView (alertColor: UIColor, customTitle: String) {
+        
+        let alertview = JSSAlertView().show(self,
+                                            title: customTitle,
+                                            text: "We're having trouble getting your weather.",
+                                            buttonText: "Try Again?!",
+                                            color: alertColor
+        )
+        
+        alertview.addAction(self.myCallback) // Method to run after dismissal
+        alertview.setTitleFont("HelveticaNeue-Light") // Title font
+        alertview.setTextFont("HelveticaNeue-Thin") // Alert body text font
+        alertview.setButtonFont("HelveticaNeue-UltraLight") // Button text font
+        alertview.setTextTheme(.Light) // can be .Light or .Dark
+
+    }
+    
+    func myCallback() {
+        // this'll run after the alert is dismissed
+        
+        if testString == "" {
+            getCurrentLocation()
+        } else {
+            myCustomView.cityLabel.text = "City.\(testString)"
+            getData(testString)
+        }
+        
+    }
     
     func getData(currentCity:String) {
         let city = self.currentLocationString as String
@@ -228,15 +253,24 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
                 
                 guard let data = data else {
                     displayError("No data was returned from the request")
+                    dispatch_async(dispatch_get_main_queue(), {
+                        
+                        self.customAlertView(UIColor.flatOrangeColor(), customTitle: "😩 Awww Sorry")
+                    })
                     return
                 }
             
                 let result: AnyObject!
                 do {
                     result = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-                    print(result)
                 } catch {
                     print("Could not parse the data as JSON")
+                    dispatch_async(dispatch_get_main_queue(), {
+                        
+                        self.customAlertView(UIColor.flatGrayColor(), customTitle: "😕 Sorry About That!")
+
+                        
+                    })
                     return
                 }
                 
@@ -251,9 +285,22 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
                     let condition = item["condition"] as? [String:AnyObject] else  {
                     
                     print("We're having trouble getting your weather")
+                    dispatch_async(dispatch_get_main_queue(), {
+                        
+                        self.customAlertView(UIColor.flatSkyBlueColor(), customTitle: "🙄 OOOPS")
+                        
+                    })
+                    //self.errorPage()
                     return
                         
                 }
+                let myWeatherDetails = WeatherDetails()
+                myWeatherDetails.sunrise = astronomy["sunrise"] as! String
+                myWeatherDetails.sunset = astronomy["sunset"] as! String
+                myWeatherDetails.humidity = atmosphere["humidity"] as! String
+                myWeatherDetails.windChill = wind["chill"] as! String
+                myWeatherDetails.windSpeed = wind["speed"] as! String
+                self.currentWeatherDetails.append(myWeatherDetails)
                 
                 for items in condition {
                     
@@ -320,9 +367,16 @@ class weatherTable: UITableViewController, CLLocationManagerDelegate {
                     
                     self.tableView.reloadData()
                     let myCurrentWeather = self.currentLocationWeather[0]
-                    
                     self.myCustomView.degreesLabel.text = "\(myCurrentWeather.temp)˚"
                     let degreesString: String = myCurrentWeather.temp
+                    
+                    let myCurrentWeatherDetails = self.currentWeatherDetails[0]
+                    self.myCustomView.sunriseLabel.text = myCurrentWeatherDetails.sunrise
+                    self.myCustomView.sunsetLabel.text = myCurrentWeatherDetails.sunset
+                    self.myCustomView.humidityLabel.text = myCurrentWeatherDetails.humidity
+                    self.myCustomView.windChillLabel.text = myCurrentWeatherDetails.windChill
+                    self.myCustomView.windSpeedLabel.text = myCurrentWeatherDetails.windSpeed
+                    
                     let a:Int? = Int(degreesString)
                     
                     if a <= 60 {

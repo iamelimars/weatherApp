@@ -3,7 +3,7 @@
 # Uncomment this line if you're using Swift
  use_frameworks!
 
-target 'weatherTestApp' do
+target 'Parallax Weather' do
 
 pod 'ChameleonFramework/Swift'
 
@@ -14,6 +14,8 @@ pod 'GuillotineMenu', '~> 2.0.2'
 pod 'GooglePlacePicker'
 
 pod "BAFluidView"
+
+pod 'JSSAlertView'
 
 end
 
